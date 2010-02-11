@@ -1,0 +1,35 @@
+dpstr : string DP maching by Takuya NISHIMOTO
+since  1996-06-17
+update 2010-02-11 
+http://nishimotz.com
+
+This program was initially created as my undergraduate work.
+After that, it was used for education or private use.
+
+[1] comparison between two words
+
+ $ ./dpstr word wafrd
+ 
+[2] comparison between two sentences (line-terminated words)
+
+ $ ./dpstr -file file-x file-y
+ 
+  * file-x ：reference data
+  * file-y ：test data
+
+[3] multiple pairs of files
+
+ $ ./dpstr -l listfile
+
+  * listfile should contain "file-x file-y" lines
+
+Results:
+
+H : Hit count
+D : Deletion count
+S : Substitution count
+I : Insertion count
+N : All label count
+
+Correct  : hit / label_num
+Accuracy : (hit - insertion ) / label_num

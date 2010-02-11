@@ -1,0 +1,68 @@
+dpstr : string DP maching by Takuya NISHIMOTO
+since  1996-06-17
+update 2010-02-11 
+http://nishimotz.com
+
+●目的
+
+文字列の DP マッチングプログラムです。
+連続音声認識における認識結果と正解を比較する、など。
+
+●使い方
+
+[1] 二つの文字列の比較
+
+ dpstr word wafrd
+ 
+[2] ２つのファイルの比較
+
+ dpstr -file file-x file-y
+ 
+file-x ：正解ラベルファイル    
+file-y ：認識結果ラベルファイル
+
+正解ラベルファイルが空の場合は、無視する。
+結果ラベルファイルが空の場合は、正解ファイルの単語数の数だけ
+deleted とみなす。
+
+[3] 複数のファイルリストの比較
+
+ dpstr -l listfile
+
+listfile は file-x file-y を１行ずつ記述したものである。
+
+●使用例
+
+$ cat test1.lbl
+今日
+は
+よい
+天気
+です
+$ cat test2.lbl
+京都
+は
+よい
+の
+天気
+です
+$ dpstr -file test1.lbl test2.lbl
+S 今日 京都
+H は は
+H よい よい
+I * の
+H 天気 天気
+H です です
+H=4  D=0  S=1  I=1  N=5
+H/N[Correct]= 80.00  (H-I)/N[Accuracy]= 60.00
+
+●出力の解説
+
+H : 正解ラベル数
+D : 脱落ラベル数
+S : 置換ラベル数
+I : 挿入ラベル数
+N : 合計ラベル数
+
+Correct  : 正答率（挿入を無視した場合）
+Accuracy : 単語正解率
