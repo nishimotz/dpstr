@@ -37,7 +37,7 @@ score_t	distance_at ( int a, int b );
 void estimate(ELM * x_list, ELM * y_list, char **x_str, char **y_str, 
               char *esti_str);
 score_t dp_match(int x_len, int y_len);
-void compare_strings( char **x_str, char **y_str, DPSTR_RESULT *res );
+void compare_strings( char **x_str, char **y_str, DPSTR_RESULT *res, bool use_display );
 
 int get_a_at(int a, int b);
 int get_b_at(int a, int b);
@@ -47,6 +47,8 @@ void set_size(int alen, int blen);
 int get_size_a();
 int get_size_b();
 void show_map();
+
+char *strtok_r(char *SOURCE, const char *DELIMITERS, char **LASTS);
 
 /* end of file */
 

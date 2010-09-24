@@ -1,6 +1,7 @@
 /*
  * disp.c
  */
+#ifdef USE_GLUT
 
 #include <GL/glut.h>
 #include <assert.h>
@@ -248,5 +249,7 @@ void disp_main_loop()
 {
   glutMainLoop();
 }
+
+#endif /* USE_GLUT */
 
 /* end of file */

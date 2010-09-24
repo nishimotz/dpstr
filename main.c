@@ -9,11 +9,17 @@
 #include "dpstr.h"
 #include "disp.h"
 
+char *strtok_r(char *SOURCE, const char *DELIMITERS, char **LASTS)
+{
+    return strtok(SOURCE, DELIMITERS);
+}
+
+
 static bool show_graph_mode = false;
 static bool use_list_mode = false;
-static bool show_accuracy_mode = false;
+static bool show_accuracy_mode = true;
 static bool use_word_mode = true;
-static bool show_map_mode = true;
+static bool show_map_mode = false;
 
 #define BUFSIZE 1000
 
@@ -36,7 +42,7 @@ static void compare_word( char *adata, char *bdata, DPSTR_RESULT *res )
     bstr[i][0] = bdata[i];
   }
   set_size(alen, blen);
-  compare_strings( astr, bstr, res );
+  compare_strings( astr, bstr, res, false );
 } /* compare_word() */
 
 
@@ -76,7 +82,7 @@ static void compare_file( char *afile, char *bfile, DPSTR_RESULT *res )
   }
   fclose(fp);
   set_size(alen, blen);
-  compare_strings( astr, bstr, res );
+  compare_strings( astr, bstr, res, false );
 } /* compare_word() */
 
 
@@ -133,10 +139,11 @@ int main( int argc, char **argv )
     }
   }
 
+#ifdef USE_GLUT
   if ( show_graph_mode ) {
     disp_init(argc, argv);
   }
-
+#endif
   if ( use_list_mode ) {
     if ( (fp = fopen( argv[2], "rt" )) == NULL ) {
       perror("listfile"); exit(1);
@@ -153,24 +160,30 @@ int main( int argc, char **argv )
     if (show_map_mode) show_map();
   } else {
     compare_file( a_data, b_data, &result );
+#if 0
     printf("score: %f\n", result.m_score / (get_size_a() + get_size_b()));
+#endif
     if (show_map_mode) show_map();
   }
 
   if ( show_accuracy_mode ) {
-    printf("H=%d  D=%d  S=%d  I=%d  N=%d\n", 
+	printf("acc1: H=%d  D=%d  S=%d  I=%d  N=%d\n", 
            result.m_hit, result.m_del, result.m_sub, 
            result.m_ins, result.m_num );
     
-    printf("H/N[Correct]=%6.2f  (H-I)/N[Accuracy]=%6.2f\n", 
+#if 0
+	printf("acc2: H/N[Correct]=%6.2f  (H-I)/N[Accuracy]=%6.2f\n", 
            100.0 * result.m_hit / result.m_num, 
 	   100.0 * (result.m_hit-result.m_ins) / result.m_num );
-  }
+#endif
+    }
 
+#ifdef USE_GLUT
   if ( show_graph_mode ) {
     disp_main_loop();
   }
-
+#endif
+  
   return 0;
 } 
 

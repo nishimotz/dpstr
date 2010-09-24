@@ -16,7 +16,7 @@ typedef struct {
 #define	SCAN_TABLE_NUM 	3
 
 static SCAN_TBL m_scan[SCAN_TABLE_NUM] = {
-#if 1
+#if 0
   {1, 0, 1.0, 0, 0, 0.0, 0, 0}, 
   {1, 1, 2.0, 0, 0, 0.0, 0, 0}, 
   {0, 1, 1.0, 0, 0, 0.0, 0, 0}

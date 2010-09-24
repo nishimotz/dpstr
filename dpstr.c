@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include "dpstr.h"
 
-void compare_strings( char **a_str, char **b_str, DPSTR_RESULT *res )
+void compare_strings( char **a_str, char **b_str, DPSTR_RESULT *res, bool use_display )
 {
   char esti_ans[MAX_ELM_NUM * 2 + 1];
   char *a_ans[MAX_ELM_NUM * 2 + 1];
@@ -37,7 +37,9 @@ void compare_strings( char **a_str, char **b_str, DPSTR_RESULT *res )
     int n = strlen(esti_ans);
     for ( i = 0; i < n ; i++ ) {
       // display alignment by word
-      printf("%c %s %s\n", esti_ans[i], b_ans[i], a_ans[i] );
+      if (use_display) {
+        printf("%c %s %s\n", esti_ans[i], b_ans[i], a_ans[i] );
+      }
       switch ( esti_ans[i] ) {
       case 'H':
         res->m_num++;

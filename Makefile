@@ -1,7 +1,8 @@
 # makefile for 'dpstr'
 # 
 
-CC      = cc -Wall -g
+#CC      = cc -Wall -g -mno-cygwin
+CC      = cc -Wall
 CPATH   =
 CFLAGS	=
 TARGET  = dpstr
