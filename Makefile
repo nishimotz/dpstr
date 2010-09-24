@@ -1,12 +1,12 @@
 # makefile for 'dpstr'
 # 
 
-CC      = cc -Wall -g -mno-cygwin
-#CC      = cc -Wall
+#CC      = cc -Wall -g -mno-cygwin
+CC      = cc -Wall
 CPATH   =
 CFLAGS	=
-#TARGET  = dpstr.linux
-TARGET  = dpstr
+TARGET  = dpstr.linux
+#TARGET  = dpstr
 SRC	= main.c dpstr.c dpmatch.c estimate.c distance.c \
 	  disp.c
 OBJS	= $(SRC:.c=.o)

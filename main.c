@@ -83,7 +83,7 @@ static void compare_file( char *afile, char *bfile, DPSTR_RESULT *res )
   fclose(fp);
   set_size(alen, blen);
   compare_strings( astr, bstr, res, false );
-} /* compare_word() */
+} /* compare_file() */
 
 
 static void show_help()
