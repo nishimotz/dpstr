@@ -12,7 +12,7 @@ typedef enum { ERROR = -1, OK = 0 }  error_t;
 #define	ELM         char *
 #define	score_t	    double  /* type of score */
 #define	MAX_SCORE   FLT_MAX
-#define	MAX_ELM_NUM 100	    /* max number of elements */
+#define	MAX_ELM_NUM 200	    /* max number of elements */
 #define	GOAL        (-1)
 #define	NOWHERE     (-2)
 
